@@ -1,0 +1,62 @@
+{
+  "name": "resumable-node",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "Laurens Rietveld <laurens.rietveld@triply.cc>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/fs-extra": "^4.0.5",
+    "@types/lodash": "^4.14.85",
+    "@types/node": "^8.0.53",
+    "@types/resumablejs": "^1.0.5",
+    "@types/superagent": "^3.5.6",
+    "fs-extra": "^4.0.2",
+    "lodash": "^4.17.4",
+    "resumablejs": "^1.1.0",
+    "superagent": "^3.5.2"
+  },
+  "scripts": {
+    "build": "npm run copyAssets && tsc -p tsconfig-build.json",
+    "copyAssets": "mkdir -p ./build && rsync -ar   --prune-empty-dirs --include '__tests__/**/*' --include '__tests__/*'  ./src/ ./build/src/",
+    "dev": "npm run watch-copy-ts",
+    "precommit": "lint-staged",
+    "test": "npm run copyAssets && better-npm-run test",
+    "upgrade-interactive": "npm-check --skip-unused -u",
+    "watch-copy-ts": "node ./bin/build/copyTsDefinitions"
+  },
+  "betterScripts": {
+    "test": {
+      "command": "mocha $(find ./build/src -name '*-test.js') --require source-map-support/register",
+      "env": {}
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --parser typescript --write",
+      "git add"
+    ],
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@types/chai": "^4.0.6",
+    "@types/express": "^4.0.39",
+    "@types/mocha": "^2.2.44",
+    "better-npm-run": "^0.1.0",
+    "chai": "^4.1.2",
+    "connect-multiparty": "^2.1.0",
+    "express": "^4.16.2",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-util": "^3.0.8",
+    "husky": "^0.14.3",
+    "lint-staged": "^5.0.0",
+    "mocha": "^4.0.1",
+    "node-notifier": "^5.1.2",
+    "npm-check": "^5.5.2",
+    "prettier": "^1.8.2",
+    "source-map-support": "^0.5.0",
+    "typescript": "^2.6.2"
+  }
+}

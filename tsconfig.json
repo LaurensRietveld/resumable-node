@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "declaration": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": false,
+        "removeComments": true,
+        "rootDir": ".",
+        "sourceMap": true,
+        "listFiles": false,
+        "outDir": "./build",
+        "experimentalDecorators": true
+    },
+    "compileOnSave": true,
+    "filesGlob": [
+        "src/**/*.ts",
+        "!node_modules/**"
+    ]
+}
